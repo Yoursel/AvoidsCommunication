@@ -15,5 +15,7 @@ namespace AvoidsCommunication.Domain.Entity
         public string Content { get; set; }
 
         public Topic Topic { get; set; }
+
+        public User User { get; set; }
     }
 }
