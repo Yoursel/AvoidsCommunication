@@ -10,4 +10,8 @@
     <Folder Include="Views\LogIn\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AvoidsCommunication.DAL\AvoidsCommunication.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

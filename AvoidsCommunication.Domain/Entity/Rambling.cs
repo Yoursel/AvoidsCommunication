@@ -10,12 +10,13 @@ namespace AvoidsCommunication.Domain.Entity
 
         public DateTime CreatedDate { get; set; }
 
-        public byte[] Cover { get; set; }
+        public byte[]? Cover { get; set; }
 
         public string Content { get; set; }
 
         public Topic Topic { get; set; }
 
+        public int UserId { get; set; }
         public User User { get; set; }
     }
 }
