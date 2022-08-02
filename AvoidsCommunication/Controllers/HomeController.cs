@@ -1,5 +1,4 @@
-﻿
-using AvoidsCommunication.DAL;
+﻿using AvoidsCommunication.DAL;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvoidsCommunication.Controllers
