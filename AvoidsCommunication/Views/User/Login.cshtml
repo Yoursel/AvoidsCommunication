@@ -1,0 +1,33 @@
+﻿@model AvoidsCommunication.Domain.ViewModel.User.LoginViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Авторизация";
+}
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="container d-flex align-items-center justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card-body p-5 text-center">
+                        <h3 class="mb-5">Авторизация</h3>
+                        <form autocomplete="on" method="post" asp-controller="User" asp-action="Login">
+                           <div asp-validation-summary="All"></div>
+                            <div class="form-group">
+                            <input type="text" asp-for="Name" name="Name" class="form-control mb-2" placeholder="Логин"/> <br/>
+                            </div>
+                            <div class="form-group">
+                            <input type="password" asp-for="Password" name="Password" class="form-control mb-2" placeholder="Пароль"/>
+                            </div>
+                            <div class="col text-center">
+                            <button class="btn btn btn-dark mt-3 mb-3">Войти</button>
+                            </div>
+                        </form>
+                        <div class="text-center">
+                        Впервые здесь? <a href="#">Зарегистрируйтесь!</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

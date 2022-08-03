@@ -1,0 +1,32 @@
+﻿@model AvoidsCommunication.Domain.ViewModel.User.RegisterViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Регистрация";
+}
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="container d-flex align-items-center justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card-body p-5 text-center">
+                        <h3 class="mb-5">Регистрация</h3>
+                        <form autocomplete="on" method="post" asp-controller="User" asp-action="Register">
+                            <div asp-validation-summary="All"></div>
+                            <div class="form-group">
+                                <input type="text" asp-for="Name" class="form-control mb-3" placeholder="Логин"/> 
+                                <input type="password" asp-for="Password" class="form-control mb-3" placeholder="Пароль"/>
+                                <input type="password" asp-for="PasswordConfirm" class="form-control mb-3" placeholder="Повторите пароль"/>
+                            </div>
+                            <div class="col text-center">
+                                <button class="btn btn btn-dark mt-3 mb-3">Зарегистрироваться</button>
+                            </div>
+                        </form>
+                        <div class="text-center">
+                        Уже с нами? <a href="#">Войти</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -7,7 +7,8 @@ namespace AvoidsCommunication.DAL.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public UserRepository(ApplicationDbContext context)
+        public UserRepository(ApplicationDbContext
+            context)
         {
             _context = context;
         }
@@ -24,6 +25,10 @@ namespace AvoidsCommunication.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public IQueryable<User> GetAll()
+        {
+            return _context.Users;
+        }
 
         public async Task<User> Update(User entity)
         {

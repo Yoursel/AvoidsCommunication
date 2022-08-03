@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AvoidsCommunication.DAL\AvoidsCommunication.DAL.csproj" />
+    <ProjectReference Include="..\AvoidsCommunication.Service\AvoidsCommunication.Service.csproj" />
   </ItemGroup>
 
 </Project>
