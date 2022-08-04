@@ -6,8 +6,8 @@ namespace AvoidsCommunication.Domain.Enum
     public enum Topic
     {
         [Display(Name = "На улице")]
-        Street,
+        Улица,
         [Display(Name = "В транспорте")]
-        Transport
+        Траспорт
     }
 }

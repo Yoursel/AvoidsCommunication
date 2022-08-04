@@ -11,12 +11,13 @@ namespace AvoidsCommunication
         public static void InitializeRepositories(this IServiceCollection services)
         {
             services.AddScoped<IBaseRepository<User>, UserRepository>();
-
+            services.AddScoped<IBaseRepository<Rambling>, RamblingRepository>();
         }
 
         public static void InitializeServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRamblingService, RamblingService>();
         }
     }
 }

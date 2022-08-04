@@ -1,4 +1,9 @@
-﻿@{
+﻿@using AvoidsCommunication.Domain.ViewModel.Ramblings
+@model List<AvoidsCommunication.Domain.Entity.Rambling>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewBag.Title = "Новости";
     Layout = "_Layout";
 }
 
@@ -13,65 +18,74 @@
     </select>
   </div>
 
-  <section class="border-bottom pb-4 mb-5">
-    <div class="row gx-5">
-      <div class="col-md-6 mb-4">
-        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
-          <img src="https://mdbcdn.b-cdn.net/img/new/slides/080.webp" class="img-fluid" />
+
+    @if (Model == null)
+    {
+        
+    }
+
+    else
+    {
+
+        <section class="border-bottom pb-4 mb-5">
+        <div class="row gx-5">
+          <div class="col-md-6 mb-4">
+            <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+              <img src="https://mdbcdn.b-cdn.net/img/new/slides/080.webp" class="img-fluid" />
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3">История дня</span>
+            <h4><strong>История дня</strong></h4>
+            <p class="text-muted">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur
+              eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum
+              sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.
+            </p>
+            <button type="button" class="btn btn-dark">Подробнее</button>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="col-md-6 mb-4">
-        <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3">История дня</span>
-        <h4><strong>История дня</strong></h4>
-        <p class="text-muted">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur
-          eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum
-          sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.
-        </p>
-        <button type="button" class="btn btn-dark">Подробнее</button>
-      </div>
-    </div>
-  </section>
+     <section>
+      @foreach (var rambling in Model)
+        {
+            <div class="row gx-lg-5">
+              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                <div>
+                  <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4"
+                    data-mdb-ripple-color="light">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" class="img-fluid" />
+                  </div>
 
+                    <div class="row mb-3">
+                    <div class="col-6">
+                      <a href="" >
+                        @rambling.Topic
+                      </a>
+                    </div>
 
+                    <div class="col-6 text-end">
+                       @rambling.CreatedDate
+                    </div>
+                  </div>
 
-  <section>
-    <div class="row gx-lg-5">
-      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-        <div>
-          <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4"
-            data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" class="img-fluid" />
-          </div>
+                  <h5>@rambling.Name</h5>
 
-          <div class="row mb-3">
-            <div class="col-6">
-              <a href="" >
-                Тематика
-              </a>
+                  <p>
+                     @rambling.Content
+                  </p>       
+                   <button type="button" class="btn btn-dark">Подробнее</button>
+              </div>
             </div>
+       </div>
+    }
+    </section>
 
-            <div class="col-6 text-end">
-               15.07.2020
-            </div>
-          </div>
+    }
 
-          <h5>Какая то история</h5>
-
-          <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, iste aliquid. Sed
-              id nihil magni, sint vero provident esse numquam perferendis ducimus dicta
-              adipisci iusto nam temporibus modi animi laboriosam?
-          </p>
-       
-           <button type="button" class="btn btn-dark">Подробнее</button>
-
-      </div>
-    </div>
-    </div>
-  </section>
-
+  
 
   <div class="d-flex justify-content-center">
       <ul class="pagination">

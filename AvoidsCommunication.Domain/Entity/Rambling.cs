@@ -16,7 +16,8 @@ namespace AvoidsCommunication.Domain.Entity
 
         public Topic Topic { get; set; }
 
-        public int UserId { get; set; }
         public User User { get; set; }
+
+       
     }
 }
