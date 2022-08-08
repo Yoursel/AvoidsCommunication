@@ -27,5 +27,7 @@ namespace AvoidsCommunication.Domain.ViewModel.Rambling
         public string Content { get; set; }
 
         public string Topic { get; set; }
+
+        public string UserName { get; set; }
     }
 }

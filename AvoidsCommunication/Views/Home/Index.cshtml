@@ -73,9 +73,9 @@
 
                   <h5>@rambling.Name</h5>
 
-                  <p>
-                     @rambling.Content
-                  </p>       
+                  <p> @rambling.Content</p>  
+           
+                  <p class="text-muted"> @rambling.User.Name</p>  
                    <button onclick="window.location.href='@Url.Action("RamblingPage", "Rambling", new { id = rambling.RamblingId })'" type="button" class="btn btn-dark">Подробнее</button>
               </div>
             </div>

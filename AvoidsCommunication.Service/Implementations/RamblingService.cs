@@ -42,6 +42,7 @@ namespace AvoidsCommunication.Service.Implementations
                     Cover = rambling.Cover,
                     Content = rambling.Content,
                     Topic = rambling.Topic.ToString(),
+                    UserName = rambling.User.Name
                 };
 
                 return new BaseResponse<RamblingViewModel>()
@@ -64,8 +65,8 @@ namespace AvoidsCommunication.Service.Implementations
         {
             try
             {
-                var cars = _ramblingRepository.GetAll().ToList();
-                if (!cars.Any())
+                var ramblings = _ramblingRepository.GetAll().ToList();
+                if (!ramblings.Any())
                 {
                     return new BaseResponse<List<Rambling>>()
                     {
@@ -76,7 +77,7 @@ namespace AvoidsCommunication.Service.Implementations
 
                 return new BaseResponse<List<Rambling>>()
                 {
-                    Data = cars,
+                    Data = ramblings,
                     StatusCode = StatusCode.OK
                 };
             }

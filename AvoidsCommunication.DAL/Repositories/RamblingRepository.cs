@@ -1,5 +1,6 @@
 ﻿using AvoidsCommunication.DAL.Interfaces;
 using AvoidsCommunication.Domain.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvoidsCommunication.DAL.Repositories
 {
@@ -27,7 +28,7 @@ namespace AvoidsCommunication.DAL.Repositories
 
         public IQueryable<Rambling> GetAll()
         {
-            return _context.Ramblings;
+            return _context.Ramblings.Include(r=>r.User); ;
         }
 
         public async Task<Rambling> Update(Rambling entity)
