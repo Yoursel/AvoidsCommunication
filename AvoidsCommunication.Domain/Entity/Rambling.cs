@@ -18,6 +18,8 @@ namespace AvoidsCommunication.Domain.Entity
 
         public User User { get; set; }
 
-       
+        public int UserId { get; set; }
+
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
