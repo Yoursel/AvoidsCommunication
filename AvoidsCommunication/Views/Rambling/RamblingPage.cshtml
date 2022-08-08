@@ -1,0 +1,29 @@
+﻿@model AvoidsCommunication.Domain.ViewModel.Rambling.RamblingViewModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewBag.Title = @Model.Name;
+    Layout = "_Layout";
+}
+
+<h2>@Model.Name</h2>
+
+<p>@Model.Content</p>
+
+<b>Комментарии</b>
+
+<form>
+    <textarea class="form-control"></textarea>
+    <button class="btn btn btn-dark mt-3 mb-5">Оставить комментарий</button>
+</form>
+
+<h5>Имя пользователя</h5>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
+    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis</p>
+<p class="text-muted">13/12/2022</p>
+
+<h5>Имя пользователя</h5>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
+    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis</p>
+<p class="text-muted">13/12/2022</p>

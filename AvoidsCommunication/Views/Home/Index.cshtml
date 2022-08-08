@@ -1,4 +1,4 @@
-﻿@using AvoidsCommunication.Domain.ViewModel.Ramblings
+﻿@using AvoidsCommunication.Domain.ViewModel.Rambling
 @model List<AvoidsCommunication.Domain.Entity.Rambling>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -76,7 +76,7 @@
                   <p>
                      @rambling.Content
                   </p>       
-                   <button type="button" class="btn btn-dark">Подробнее</button>
+                   <button onclick="window.location.href='@Url.Action("RamblingPage", "Rambling", new { id = rambling.RamblingId })'" type="button" class="btn btn-dark">Подробнее</button>
               </div>
             </div>
        </div>

@@ -10,7 +10,7 @@ namespace AvoidsCommunication.Domain.Enum
     {
         UserNotFound = 0,
 
-        CarNotFound = 10,
+        RamblingNotFound = 10,
 
         OK = 200,
         InternalServerError = 500

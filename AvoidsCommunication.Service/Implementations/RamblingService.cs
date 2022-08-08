@@ -2,7 +2,9 @@
 using AvoidsCommunication.Domain.Entity;
 using AvoidsCommunication.Domain.Enum;
 using AvoidsCommunication.Domain.Response;
+using AvoidsCommunication.Domain.ViewModel.Rambling;
 using AvoidsCommunication.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace AvoidsCommunication.Service.Implementations
@@ -19,9 +21,43 @@ namespace AvoidsCommunication.Service.Implementations
             _ramblingRepository = ramblingRepository;
             _logger = logger;
         }
-        public Task<IBaseResponse<Rambling>> GetRambling(int id)
+        public async Task<IBaseResponse<RamblingViewModel>> GetRambling(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var rambling = await _ramblingRepository.GetAll().FirstOrDefaultAsync(x => x.RamblingId == id);
+                if (rambling == null)
+                {
+                    return new BaseResponse<RamblingViewModel>()
+                    {
+                        Description = "Статья не найдена",
+                        StatusCode = StatusCode.RamblingNotFound
+                    };
+                }
+
+                var data = new RamblingViewModel()
+                {
+                    Name = rambling.Name,
+                    CreatedDate = rambling.CreatedDate,
+                    Cover = rambling.Cover,
+                    Content = rambling.Content,
+                    Topic = rambling.Topic.ToString(),
+                };
+
+                return new BaseResponse<RamblingViewModel>()
+                {
+                    StatusCode = StatusCode.OK,
+                    Data = data
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<RamblingViewModel>()
+                {
+                    Description = $"[GetRambling] : {ex.Message}",
+                    StatusCode = StatusCode.InternalServerError
+                };
+            }
         }
 
         public IBaseResponse<List<Rambling>> GetRamblings()
