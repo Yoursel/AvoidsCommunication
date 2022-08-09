@@ -8,6 +8,5 @@ namespace AvoidsCommunication.Service.Interfaces
     {
         IBaseResponse<List<Rambling>> GetRamblings();
         Task<IBaseResponse<RamblingViewModel>> GetRambling(int id);
-
     }
 }

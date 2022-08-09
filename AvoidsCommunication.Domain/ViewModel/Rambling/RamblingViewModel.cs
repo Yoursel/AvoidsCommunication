@@ -29,5 +29,7 @@ namespace AvoidsCommunication.Domain.ViewModel.Rambling
         public string Topic { get; set; }
 
         public string UserName { get; set; }
+
+        public List<Entity.Comment> Comments { get; set; }
     }
 }

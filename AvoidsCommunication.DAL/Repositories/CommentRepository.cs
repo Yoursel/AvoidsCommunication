@@ -4,36 +4,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AvoidsCommunication.DAL.Repositories
 {
-    public class RamblingRepository : IBaseRepository<Rambling>
+    public class CommentRepository : IBaseRepository<Comment>
     {
         private readonly ApplicationDbContext _context;
 
-        public RamblingRepository(ApplicationDbContext
+        public CommentRepository(ApplicationDbContext
             context)
         {
             _context = context;
         }
 
-        public async Task Create(Rambling entity)
+        public async Task Create(Comment entity)
         {
-            await _context.Ramblings.AddAsync(entity);
+            await _context.Comments.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Rambling entity)
+        public async Task Delete(Comment entity)
         {
-            _context.Ramblings.Remove(entity);
+            _context.Comments.Remove(entity);
             await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Rambling> GetAll()
+        public IQueryable<Comment> GetAll()
         {
-            return _context.Ramblings.Include(r=>r.User).Include(x=>x.Comments); ;
+            return _context.Comments.Include(u=>u.User).Include(r=>r.Rambling);
         }
 
-        public async Task<Rambling> Update(Rambling entity)
+        public async Task<Comment> Update(Comment entity)
         {
-            _context.Ramblings.Update(entity);
+            _context.Comments.Update(entity);
             await _context.SaveChangesAsync();
 
             return entity;

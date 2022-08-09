@@ -20,12 +20,11 @@
     <button class="btn btn btn-dark mt-3 mb-5">Оставить комментарий</button>
 </form>
 
-<h5>Имя пользователя</h5>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
-    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis</p>
-<p class="text-muted">13/12/2022</p>
+@foreach(var comment in @Model.Comments )
+{
+    <h5>@comment.User.Name</h5>
+    <p>@comment.CommentText</p>
+    <p class="text-muted">@comment.CreatedDate</p>
+}
 
-<h5>Имя пользователя</h5>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque 
-    laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis</p>
-<p class="text-muted">13/12/2022</p>
+

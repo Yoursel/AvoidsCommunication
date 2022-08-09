@@ -42,7 +42,8 @@ namespace AvoidsCommunication.Service.Implementations
                     Cover = rambling.Cover,
                     Content = rambling.Content,
                     Topic = rambling.Topic.ToString(),
-                    UserName = rambling.User.Name
+                    UserName = rambling.User.Name,
+                    Comments = rambling.Comments
                 };
 
                 return new BaseResponse<RamblingViewModel>()
