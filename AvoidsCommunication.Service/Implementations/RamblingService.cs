@@ -13,14 +13,49 @@ namespace AvoidsCommunication.Service.Implementations
     {
 
         private readonly IBaseRepository<Rambling> _ramblingRepository;
+        private readonly IBaseRepository<User> _userRepository;
         private readonly ILogger<UserService> _logger;
 
         public RamblingService(IBaseRepository<Rambling> ramblingRepository,
-            ILogger<UserService> logger)
+            ILogger<UserService> logger, IBaseRepository<User> userRepository)
         {
             _ramblingRepository = ramblingRepository;
             _logger = logger;
+            _userRepository = userRepository;
         }
+
+        public async Task<IBaseResponse<Rambling>> Create(RamblingViewModel model, byte[] imageData, string username)
+        {
+            var user = _userRepository.GetAll().Where(x => x.Name == username).First();
+            try
+            {  
+                var rambling = new Rambling()
+                {
+                    Name = model.Name,
+                    Content = model.Content,
+                    Topic = (Topic)Convert.ToInt32(model.Topic),
+                    Cover = imageData,
+                    User = user,
+                    CreatedDate = DateTime.Now,
+                };
+                await _ramblingRepository.Create(rambling);
+
+                return new BaseResponse<Rambling>()
+                {
+                    StatusCode = StatusCode.OK,
+                    Data = rambling
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<Rambling>()
+                {
+                    Description = $"[Create] : {ex.Message}",
+                    StatusCode = StatusCode.InternalServerError
+                };
+            }
+        }
+
         public async Task<IBaseResponse<RamblingViewModel>> GetRambling(int id)
         {
             try
@@ -37,6 +72,7 @@ namespace AvoidsCommunication.Service.Implementations
 
                 var data = new RamblingViewModel()
                 {
+                    RamblingId = rambling.RamblingId,
                     Name = rambling.Name,
                     CreatedDate = rambling.CreatedDate,
                     Cover = rambling.Cover,
