@@ -10,4 +10,9 @@ namespace AvoidsCommunication.Domain.Enum
         [Display(Name = "В транспорте")]
         Траспорт
     }
+
+    public class TopicViewModel
+    {
+        public Topic TopicList { get; set; }
+    }
 }

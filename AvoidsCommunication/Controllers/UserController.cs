@@ -51,7 +51,7 @@ namespace AvoidsCommunication.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(response.Data));
 
-                    return Redirect("Login");
+                    return RedirectToAction("Home", "Index");
                 }
                 ModelState.AddModelError("", response.Description);
             }

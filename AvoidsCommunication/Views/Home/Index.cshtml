@@ -26,8 +26,7 @@
 
     else
     {
-
-        <section class="border-bottom pb-4 mb-5">
+      <section class="border-bottom pb-4 mb-5">
         <div class="row gx-5">
           <div class="col-md-6 mb-4">
             <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
@@ -49,14 +48,22 @@
       </section>
 
      <section>
-      @foreach (var rambling in Model)
+     <div class="row gx-lg-5">
+        @foreach (var rambling in Model)
         {
-            <div class="row gx-lg-5">
               <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                 <div>
-                  <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4"
-                    data-mdb-ripple-color="light">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" class="img-fluid" />
+                  <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4" data-mdb-ripple-color="light">
+                  @if (rambling.Cover!= null)
+                  {
+                    <img src="@rambling.Cover" class="img-fluid" />       
+                  }
+                  else
+                  {
+                    <img src="https://tatarstan-symphony.com/images/noimage.jpg" class="img-fluid" /> 
+                  }
+                    
+                               
                   </div>
 
                     <div class="row mb-3">
@@ -66,21 +73,21 @@
                       </a>
                     </div>
 
-                    <div class="col-6 text-end">
+                    <div class="col-6">
                        @rambling.CreatedDate
                     </div>
                   </div>
 
                   <h5>@rambling.Name</h5>
 
-                  <p> @rambling.Content</p>  
+                  <div class="col-2">@rambling.Content</div>  
            
                   <p class="text-muted"> @rambling.User.Name</p>  
                    <button onclick="window.location.href='@Url.Action("RamblingPage", "Rambling", new { id = rambling.RamblingId })'" type="button" class="btn btn-dark">Подробнее</button>
               </div>
             </div>
-       </div>
-    }
+        }
+    </div>
     </section>
 
     }

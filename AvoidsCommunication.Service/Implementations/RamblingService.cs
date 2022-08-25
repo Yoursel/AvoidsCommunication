@@ -56,6 +56,46 @@ namespace AvoidsCommunication.Service.Implementations
             }
         }
 
+        public async Task<IBaseResponse<Rambling>> Edit(int id, RamblingViewModel model)
+        {
+            try
+            {
+                var rambling = await _ramblingRepository.GetAll().FirstOrDefaultAsync(x => x.RamblingId == id);
+                if (rambling == null)
+                {
+                    return new BaseResponse<Rambling>()
+                    {
+                        Description = "Rambling not found",
+                        StatusCode = StatusCode.RamblingNotFound
+                    };
+                }
+
+                rambling.CreatedDate = model.CreatedDate;
+                rambling.Content = model.Content;
+                rambling.Cover = model.Cover;
+                rambling.Name = model.Name;
+                rambling.Topic = (Topic)Convert.ToInt32(model.Topic);
+
+                await _ramblingRepository.Update(rambling);
+
+
+                return new BaseResponse<Rambling>()
+                {
+                    Data = rambling,
+                    StatusCode = StatusCode.OK,
+                };
+  
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<Rambling>()
+                {
+                    Description = $"[Edit] : {ex.Message}",
+                    StatusCode = StatusCode.InternalServerError
+                };
+            }
+        }
+
         public async Task<IBaseResponse<RamblingViewModel>> GetRambling(int id)
         {
             try

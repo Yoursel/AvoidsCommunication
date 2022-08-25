@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -16,9 +17,18 @@
             </a>
 
             <ul class="nav">
-              <li class="nav-item"><a href="#" class="nav-link" aria-current="page">Истории</a></li>
-              <li class="nav-item"><a href="#" class="nav-link" aria-current="page">Добавить историю</a></li>
-              <li class="nav-item"><a href="#" class="nav-link">Войти</a></li>
+                <li class="nav-item"><a href='@Url.Action("Index", "Home")' class="nav-link" aria-current="page">Истории</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item"><a href='@Url.Action("CreateRambling", "Rambling")' class="nav-link" aria-current="page">Добавить историю</a></li>
+                    <li class="nav-item"><a href='#' class="nav-link" aria-current="page">Мои истории</a></li>
+                    <li class="nav-item"><a hhref='@Url.Action("Logout", "User")' class="nav-link">Выйти</a></li>
+                }
+                else
+                {
+                    <li class="nav-item"><a href='@Url.Action("Login", "User")' class="nav-link">Войти</a></li>
+                }
+           
             </ul>
         </header>
 

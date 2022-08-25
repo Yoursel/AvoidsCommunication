@@ -9,5 +9,6 @@ namespace AvoidsCommunication.Service.Interfaces
         IBaseResponse<List<Rambling>> GetRamblings();
         Task<IBaseResponse<RamblingViewModel>> GetRambling(int id);
         Task<IBaseResponse<Rambling>> Create(RamblingViewModel model, byte[]? imageData, string username);
+        Task<IBaseResponse<Rambling>> Edit(int id, RamblingViewModel model);
     }
 }

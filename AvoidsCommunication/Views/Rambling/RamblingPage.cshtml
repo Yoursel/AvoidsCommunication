@@ -1,26 +1,33 @@
-﻿@model AvoidsCommunication.Domain.ViewModel.Rambling.RamblingViewModel
+﻿@model AvoidsCommunication.Domain.ViewModel.Rambling.RamblingPageViewModel
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    ViewBag.Title = @Model.Name;
+    ViewBag.Title = @Model.Rambling.Data.Name;
     Layout = "_Layout";
 }
 
-<h2>@Model.Name</h2>
+<h2>@Model.Rambling.Data.Name</h2>
 
-<p>@Model.Content</p>
+<p>@Model.Rambling.Data.Content</p>
 
-<p class="text-muted">@Model.UserName @Model.CreatedDate</p>
+<p class="text-muted">@Model.Rambling.Data.UserName @Model.Rambling.Data.CreatedDate</p>
 
 <b>Комментарии</b>
 
-<form>
-    <textarea class="form-control"></textarea>
-    <button class="btn btn btn-dark mt-3 mb-5">Оставить комментарий</button>
-</form>
+  @if (User.Identity.IsAuthenticated)
+{
+    <form autocomplete="on" method="post" asp-controller="Rambling" asp-action="CreateComment">
+        <div asp-validation-summary="All"></div>
+        <input type="hidden" asp-for="@Model.Comment.RamblingId" value="@Model.Rambling.Data.RamblingId"/>
+        <textarea asp-for="@Model.Comment.CommentText" name="CommentText" class="form-control"></textarea>
+        <button class="btn btn btn-dark mt-3 mb-5">Оставить комментарий</button>
+    </form>
+}     
 
-@foreach(var comment in @Model.Comments )
+
+
+@foreach(var comment in @Model.Rambling.Data.Comments )
 {
     <h5>@comment.User.Name</h5>
     <p>@comment.CommentText</p>

@@ -12,12 +12,14 @@ namespace AvoidsCommunication
         {
             services.AddScoped<IBaseRepository<User>, UserRepository>();
             services.AddScoped<IBaseRepository<Rambling>, RamblingRepository>();
+            services.AddScoped<IBaseRepository<Comment>, CommentRepository>();
         }
 
         public static void InitializeServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRamblingService, RamblingService>();
+            services.AddScoped<ICommentService, CommentService>();
         }
     }
 }
